@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      input[type="number"] {
+        width: 70px;
+        height: 30px;
+        text-align: center;
+        margin: 3px;
+        float: left;
+      }
+      select {
+        width: 60px;
+        text-align: center;
+        height: 36px;
+      }
+      /*select and equals elements*/
+      select,
+      .equals {
+        margin: 3px;
+        float: left;
+      }
+
+      .cal {
+        margin: 350px 500px;
+      }
+      /*output element*/
+      output {
+        display: block;
+        border: 1px solid #333333;
+        border-radius: 5px;
+        min-width: 70px;
+        height: 25px;
+        margin: 3px;
+        padding: 2px;
+        text-align: center;
+        background: #000000;
+        color: #ffffff;
+        float: left;
+      }
+    </style>
+    <script type="text/javascript">
+      function updateOutput() {
+        var form = document.getElementById("calc");
+        var out = form.elements["z"];
+        var x = parseInt(form.elements["x"].value);
+        var y = parseInt(form.elements["y"].value);
+        var operator = parseInt(form.elements["op"].value);
+        switch (operator) {
+          case 0:
+            out.value = x + y;
+            break;
+          case 1:
+            out.value = x - y;
+            break;
+          case 2:
+            out.value = x * y;
+            break;
+          case 3:
+            out.value = x / y;
+            break;
+          case 4:
+            out.value = x % y;
+            break;
+          default:
+            break;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="cal">
+      <form id="calc" oninput="updateOutput()">
+        <input type="number" name="x" value="0" />
+        <select name="op" onchange="updateOutput()">
+          <option value="0">+</option>
+          <option value="1">-</option>
+          <option value="2">*</option>
+          <option value="3">/</option>
+          <option value="4">mod</option>
+        </select>
+        <input type="number" name="y" value="0" />
+        <div class="equals">=</div>
+        <output name="z" for="x y">0</output>
+      </form>
+    </div>
+  </body>
+</html>
